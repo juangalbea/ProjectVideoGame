@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript" src="js/background.js"></script>
+  <!-- <script type="text/javascript" src="js/bullet.js"></script>
+  <script type="text/javascript" src="js/player.js"></script>
+  <script type="text/javascript" src="js/obstacle.js"></script>
+  <script type="text/javascript" src="js/scoreboard.js"></script> -->
+  <script type="text/javascript" src="js/game.js"></script>
+
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/gamepadtest.js"></script>
+<style>
+.buttons, .axes {
+  padding: 1em;
+}
+
+/*meter*/.axis {
+  min-width: 200px;
+  margin: 1em;
+}
+
+.button {
+  padding: 1em;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAAxJREFUCNdjYPjPAAACAgEAqiqeJwAAAABJRU5ErkJggg==);
+  background-size: 0% 0%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.pressed {
+  border: 1px solid red;
+}
+</style>
+</head>
+<body>
+  <canvas id="canvas" width="1200" height="700"></canvas>
+  <h2 id="start">Press a button on your controller to start</h2>
+  <a href="https://github.com/luser/gamepadtest"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+</body>
+</html>
