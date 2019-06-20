@@ -41,7 +41,7 @@ function addgamepad(gamepad) {
     e.setAttribute("min", "-1");
     e.setAttribute("max", "1");
     e.setAttribute("value", "0");
-    e.innerHTML = i;
+    // console.log(e.innerHTML = i);
     a.appendChild(e);
   }
   d.appendChild(a);
@@ -72,17 +72,25 @@ function updateStatus() {
       var pressed = val == 1.0;
       if (typeof(val) == "object") {
         pressed = val.pressed;
+        // console.log(val.value)
         val = val.value;
+        // console.log(val)
+        // joystick.position = val;
+        
+        
       }
       var pct = Math.round(val * 100) + "%";
       b.style.backgroundSize = pct + " " + pct;
       if (pressed) {
+       
         b.className = "button pressed";
       } else {
+        
+
         b.className = "button";
       }
     }
-
+    
     var axes = d.getElementsByClassName("axis");
     for (var i=0; i<controller.axes.length; i++) {
       var a = axes[i];
@@ -95,15 +103,17 @@ function updateStatus() {
    
       // console.log(a.innerHTML = i + ": " + controller.axes[i].toFixed(4));
       var crox = controller.axes[0];
-      console.log(crox)
+      // console.log(crox)
 
       joystick.direction = crox
     }
   }
   rAF(updateStatus);
 }
-
+joystick.position = rAF(updateStatus);
+// console.log(joystick.position)
 function scangamepads() {
+  
   var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : []);
   for (var i = 0; i < gamepads.length; i++) {
     if (gamepads[i]) {
@@ -123,5 +133,5 @@ if (haveEvents) {
   window.addEventListener("webkitgamepadconnected", connecthandler);
   window.addEventListener("webkitgamepaddisconnected", disconnecthandler);
 } else {
-  setInterval(scangamepads, 500);
+  // setInterval(scangamepads, 500);
 }
