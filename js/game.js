@@ -68,7 +68,7 @@ class Game {
 
   start = () => {
     this.platforms = [
-      new Platform(0, 660, 1200, 10, "red"),
+      new Platform(0, 670, 1200, 10, "red"),
       new Platform(100, 570, 140, 10, "green"),
       new Platform(200, 480, 140, 10, "blue"),
       new Platform(100, 390, 140, 10, "brown"),
@@ -103,12 +103,16 @@ class Game {
       else if (this.finalYPosition < this.oldPosition)
       this.dif = false;
       this.oldPosition = this.finalYPosition;
-      console.log(this.dif)
-      if (platform.x >= 70 + this.xDoll && platform.y >= this.finalYPosition - 5 && platform.x <= 90 + this.xDoll && platform.y <= this.finalYPosition - 25) {
+      if (this.xDoll + 40 > platform.x && this.finalYPosition + 55 > platform.y && this.finalYPosition + 50 < platform.y +5 && this.xDoll + 8 < platform.x + platform.w && this.dif && platform.color!="red") {
         // collision has been detecteddebugger
         
         console.log("Collision detected");
       }
+      // if (this.xDoll + 80 > platform.x && this.finalYPosition - 90 > platform.y && this.finalYPosition - 90 < platform.y + 10 && this.xDoll + 100 < platform.x + platform.w && this.dif) {
+      //   // collision has been detecteddebugger
+        
+      //   console.log("Collision detected");
+      // }
     })
 
     // colisions = () => {
@@ -246,7 +250,7 @@ this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * 
     // this.ctx.closePath();
 
     this.ctx.beginPath();
-    this.ctx.rect(80 + this.xDoll, this.finalYPosition - 15, 40, 50)
+    this.ctx.rect(this.xDoll, this.finalYPosition, 40, 50)
     this.ctx.fill();
     this.ctx.closePath();
 
@@ -286,12 +290,12 @@ this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * 
       // console.log(e.keyCode);
       switch (e.keyCode) {
         case this.key_left:
-          if(this.xDoll >= -50) {
+          if(this.xDoll >= -0) {
             this.xDoll -= 10;
           }
           break;
         case this.key_right:
-          if (this.xDoll <= 1050) {
+          if (this.xDoll <= canvas.width-40) {
             this.xDoll += 10;
           }
           break;
