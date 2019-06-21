@@ -56,6 +56,7 @@ class Game {
     this.spacebarPressed = false;
     this.moments = 0;
     this.oldPosition = 0;
+    this.dif = false;
     // this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
   }
 
@@ -97,9 +98,12 @@ class Game {
     // here you can check the collision of your player against any platform
     this.platforms.forEach(platform => {
       // console.log(this.finalYPosition)
-      console.log(this.oldPosition + "old")
-      console.log(this.finalYPosition)
+      if(this.finalYPosition > this.oldPosition)
+      this.dif = true;
+      else if (this.finalYPosition < this.oldPosition)
+      this.dif = false;
       this.oldPosition = this.finalYPosition;
+      console.log(this.dif)
       if (platform.x >= 70 + this.xDoll && platform.y >= this.finalYPosition - 5 && platform.x <= 90 + this.xDoll && platform.y <= this.finalYPosition - 25) {
         // collision has been detecteddebugger
         
