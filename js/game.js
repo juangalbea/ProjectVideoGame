@@ -55,6 +55,7 @@ class Game {
     this.speed = 0;
     this.spacebarPressed = false;
     this.moments = 0;
+    this.oldPosition = 0;
     // this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
   }
 
@@ -86,6 +87,7 @@ class Game {
       if (this.spacebarPressed)    {
         this.acumulatedAcceleration += this.acceleration        // console.log(acumulatedAcceleration)
     }
+    
       this.counter++;
       this.clear();
       this.moveAll();
@@ -94,8 +96,13 @@ class Game {
 
     // here you can check the collision of your player against any platform
     this.platforms.forEach(platform => {
+      // console.log(this.finalYPosition)
+      console.log(this.oldPosition + "old")
+      console.log(this.finalYPosition)
+      this.oldPosition = this.finalYPosition;
       if (platform.x >= 70 + this.xDoll && platform.y >= this.finalYPosition - 5 && platform.x <= 90 + this.xDoll && platform.y <= this.finalYPosition - 25) {
-        // collision has been detected
+        // collision has been detecteddebugger
+        
         console.log("Collision detected");
       }
     })
@@ -122,51 +129,52 @@ class Game {
 
 
 
-      switch (this.moments) {
+    //   switch (this.moments) {
         
-        case 0: 
+    //     case 0: 
         
-          this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
+    //       this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
 
-      if (this.finalYPosition > this.boxPositionBoundary) {
-        this.speed = 0;
-        this.acumulatedAcceleration = 0
-        this.spacebarPressed = false
-        this.finalYPosition = this.boxPositionBoundary
-    }
-          break;
-        case 1: 
-        this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense) -80
+    //   if (this.finalYPosition > this.boxPositionBoundary) {
+    //     this.speed = 0;
+    //     this.acumulatedAcceleration = 0
+    //     this.spacebarPressed = false
+    //     this.finalYPosition = this.boxPositionBoundary
+    // }
+    //       break;
+    //     case 1: 
+    //     this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense) -80
 
-        if (this.finalYPosition > this.boxPositionBoundary -80) {
-          this.speed = 0;
-          this.acumulatedAcceleration = 0
-          this.spacebarPressed = false
-          this.finalYPosition = this.boxPositionBoundary -80
-      }
-          break; 
-        case 2:
-          console.log(2);
-          break;
-        case 3: 
-          console.log(3)
-          break;
-        case 4: 
-          console.log(4);
-          break; 
-        case 5:
-          console.log(5);
-          break;
-        case 6: 
-          console.log(6)
-          break;
-        case 7: 
-          console.log(7);
-          break; 
-        default:
-          console.log('default');
-      }
+    //     if (this.finalYPosition > this.boxPositionBoundary -80) {
+    //       this.speed = 0;
+    //       this.acumulatedAcceleration = 0
+    //       this.spacebarPressed = false
+    //       this.finalYPosition = this.boxPositionBoundary -80
+    //   }
+    //       break; 
+    //     case 2:
+    //       console.log(2);
+    //       break;
+    //     case 3: 
+    //       console.log(3)
+    //       break;
+    //     case 4: 
+    //       console.log(4);
+    //       break; 
+    //     case 5:
+    //       console.log(5);
+    //       break;
+    //     case 6: 
+    //       console.log(6)
+    //       break;
+    //     case 7: 
+    //       console.log(7);
+    //       break; 
+    //     default:
+    //       console.log('default');
+    //   }
 this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
+//console.log(this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense))
 
       if (this.finalYPosition > this.boxPositionBoundary) {
         this.speed = 0;
@@ -263,7 +271,7 @@ this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * 
 
     if (joystick.position > 0){
       this.spacebarPressed = true
-              this.acceleration = 9.8 / 23
+              this.acceleration = 9.8 / 53
               this.speed = 10
               // console.log("yeeaahh")
     }
