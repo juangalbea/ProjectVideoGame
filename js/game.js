@@ -57,6 +57,7 @@ class Game {
     this.moments = 0;
     this.oldPosition = 0;
     this.dif = false;
+    this.platforms=[];
     // this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
   }
 
@@ -68,19 +69,20 @@ class Game {
 
   start = () => {
     this.platforms = [
-      new Platform(0, 670, 1200, 10, "red"),
-      new Platform(100, 570, 140, 10, "green"),
-      new Platform(200, 480, 140, 10, "blue"),
-      new Platform(100, 390, 140, 10, "brown"),
-      new Platform(200, 300, 800, 10, "purple"),
-      new Platform(60, 220, 140, 10, "cian"),
-      new Platform(200, 140, 180, 10, "white"),
-      new Platform(400, 60, 160, 10, "magenta"),
-      new Platform(650, 580, 180, 10, "lightgrey"),
-      new Platform(800, 500, 180, 10, "orange"),
-      new Platform(1000, 370, 180, 10, "lightblue"),
-      new Platform(900, 210, 140, 10, "darkgreen"),
-      new Platform(1000, 120, 140, 10, "pink")
+
+      new Platform(0, 670, 1200, 10, "#ff0000"),
+      new Platform(100, 570, 140, 10, "#00ff00"),
+      new Platform(200, 480, 140, 10, "#ff00ff"),
+      new Platform(100, 390, 140, 10, "#ffff00"),
+      new Platform(200, 300, 800, 10, "#00ff00"),
+      new Platform(60, 220, 140, 10, "#ff0000"),
+      new Platform(200, 140, 180, 10, "#0000ff"),
+      new Platform(400, 60, 160, 10, "#ff0000"),
+      new Platform(650, 580, 180, 10, "#00ffff"),
+      new Platform(800, 500, 180, 10, "#ff00ff"),
+      new Platform(1000, 370, 180, 10, "#ffff00"),
+      new Platform(900, 210, 140, 10, "#ff0000"),
+      new Platform(1000, 120, 140, 10, "#ff00ff")
     ]
 
     this.reset();
@@ -103,84 +105,58 @@ class Game {
       else if (this.finalYPosition < this.oldPosition)
       this.dif = false;
       this.oldPosition = this.finalYPosition;
-      if (this.xDoll + 40 > platform.x && this.finalYPosition + 55 > platform.y && this.finalYPosition + 50 < platform.y +5 && this.xDoll + 8 < platform.x + platform.w && this.dif && platform.color!="red") {
+      if (this.xDoll + 40 > platform.x && this.finalYPosition + 50 > platform.y && this.finalYPosition + 50 < platform.y +15 && this.xDoll + 8 < platform.x + platform.w && this.dif && platform.color!="red") {
         // collision has been detecteddebugger
         
+              this.acceleration = 9.8 / 25
+              this.speed = 10
+              this.speed = 0;
+        this.acumulatedAcceleration = 0
+        this.spacebarPressed = false
+        this.finalYPosition = this.boxPositionBoundary + platform.y
+        if(platform.color == "#ff0000") {
+          this.platforms.forEach(platform => {
+            if(platform.color == "#00ffff")
+            platform.color = "#ff00ff"
+          });
+        }
+
+        if(platform.color == "#ff00ff") {
+          this.platforms.forEach(platform => {
+            if(platform.color == "#00ff00")
+            platform.color = "#0000ff"
+          });
+        } 
+      
+         if(platform.color == "#ffff00") {
+          this.platforms.forEach(platform => {
+            if(platform.color == "#0000ff")
+            platform.color = "#00ff00"
+          });
+        }
+         if(platform.color == "#00ff00") {
+          this.platforms.forEach(platform => {
+            if(platform.color == "#ff00ff")
+            platform.color = "#ff0000"
+          });
+        } 
+        if(platform.color == "#00ffff") {
+          this.platforms.forEach(platform => {
+            if(platform.color == "#ff0000")
+            platform.color = "#ffff00"
+          });
+        } 
+        if(platform.color == "#0000ff") {
+          this.platforms.forEach(platform => {
+            if(platform.color   == "#ffff00")
+            platform.color = "#00ff00"
+          });
+        }
         console.log("Collision detected");
       }
-      // if (this.xDoll + 80 > platform.x && this.finalYPosition - 90 > platform.y && this.finalYPosition - 90 < platform.y + 10 && this.xDoll + 100 < platform.x + platform.w && this.dif) {
-      //   // collision has been detecteddebugger
-        
-      //   console.log("Collision detected");
-      // }
+
     })
 
-    // colisions = () => {
-    //   this.obstacles.forEach(element => {
-    //       if (
-    //         this.xCar + 40 >= element.x &&
-    //         element.x + element.width >= this.xCar &&
-    //         this.yCar + 100 >= element.y &&
-    //         element.y + 30 >= this.yCar
-    //       ) {
-    //         clearInterval(this.intervalId);
-    //         this.obstacles = [];
-    //         this.offsetCounter = 0;
-    //       }
-    //     }
-    //   );
-    // }
-
-
-
-
-
-
-
-    //   switch (this.moments) {
-        
-    //     case 0: 
-        
-    //       this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
-
-    //   if (this.finalYPosition > this.boxPositionBoundary) {
-    //     this.speed = 0;
-    //     this.acumulatedAcceleration = 0
-    //     this.spacebarPressed = false
-    //     this.finalYPosition = this.boxPositionBoundary
-    // }
-    //       break;
-    //     case 1: 
-    //     this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense) -80
-
-    //     if (this.finalYPosition > this.boxPositionBoundary -80) {
-    //       this.speed = 0;
-    //       this.acumulatedAcceleration = 0
-    //       this.spacebarPressed = false
-    //       this.finalYPosition = this.boxPositionBoundary -80
-    //   }
-    //       break; 
-    //     case 2:
-    //       console.log(2);
-    //       break;
-    //     case 3: 
-    //       console.log(3)
-    //       break;
-    //     case 4: 
-    //       console.log(4);
-    //       break; 
-    //     case 5:
-    //       console.log(5);
-    //       break;
-    //     case 6: 
-    //       console.log(6)
-    //       break;
-    //     case 7: 
-    //       console.log(7);
-    //       break; 
-    //     default:
-    //       console.log('default');
-    //   }
 this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense)
 //console.log(this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * this.sense))
 
@@ -190,18 +166,6 @@ this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * 
         this.spacebarPressed = false
         this.finalYPosition = this.boxPositionBoundary
     }
-
-  //   if (this.finalYPosition > 570) {
-  //     this.speed = 10;
-  //     this.acumulatedAcceleration = 0
-  //     this.spacebarPressed = false
-  //     this.finalYPosition = this.boxPositionBoundary
-  // }
-    // this.ctx.translate(this.w2, this.finalYPosition)
-
-    // this.spacebarPressed = true
-    // this.acceleration = 9.8 / 23
-    // this.speed = 10
 
 
     },1000/this.fps)
@@ -279,7 +243,7 @@ this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * 
 
     if (joystick.position > 0){
       this.spacebarPressed = true
-              this.acceleration = 9.8 / 53
+              this.acceleration = 9.8 / 25
               this.speed = 10
               // console.log("yeeaahh")
     }
@@ -301,7 +265,7 @@ this.finalYPosition = this.posY+= ((this.speed - this.acumulatedAcceleration) * 
           break;
           case this.key_space:
               this.spacebarPressed = true
-              this.acceleration = 9.8 / 23
+              this.acceleration = 9.8 / 20
               this.speed = 10
           
           break;
